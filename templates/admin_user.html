@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Manage Users</title>
+    <link rel="stylesheet" href="static/admin_user.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Users</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>
+                        {% if user[4] == 'pending' %}
+                            <form action="{{ url_for('update_user_status') }}" method="POST" style="display:inline;">
+                                <input type="hidden" name="user_id" value="{{ user[0] }}">
+                                <button type="submit" name="action" value="approve" class="approve-btn">Approve</button>
+                            </form>
+                            <form action="{{ url_for('update_user_status') }}" method="POST" style="display:inline;">
+                                <input type="hidden" name="user_id" value="{{ user[0] }}">
+                                <button type="submit" name="action" value="reject" class="reject-btn">Reject</button>
+                            </form>
+                        {% else %}
+                            {{ user[4] }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Back Button After Table -->
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+        </div>
+
+    </div>
+</body>
+</html>
+{% endblock %}

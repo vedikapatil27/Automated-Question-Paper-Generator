@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Question Paper Generator{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Flash Message Styling */
+        .flash-popup {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            background-color:rgb(22, 177, 8); /* Red background */
+            color: #fff; /* White text */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .flash-popup.show {
+            display: block;
+            animation: slideDownFadeOut 5s ease-in-out;
+        }
+
+        @keyframes slideDownFadeOut {
+            0% { opacity: 0; transform: translate(-50%, -30%); }
+            10% { opacity: 1; transform: translate(-50%, 0); }
+            90% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, -30%); }
+        }
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-popup" class="flash-popup">
+                <span class="close-btn" onclick="hideFlashPopup()">&times;</span>
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <script>
+        // Display flash message pop-up
+        window.onload = function() {
+            const flashPopup = document.getElementById('flash-popup');
+            if (flashPopup) {
+                flashPopup.classList.add('show');
+                // Automatically hide the pop-up after 5 seconds
+                setTimeout(() => {
+                    hideFlashPopup();
+                }, 5000);
+            }
+        };
+
+        // Function to hide the flash popup manually
+        function hideFlashPopup() {
+            const flashPopup = document.getElementById('flash-popup');
+            if (flashPopup) {
+                flashPopup.classList.remove('show');
+            }
+        }
+    </script>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

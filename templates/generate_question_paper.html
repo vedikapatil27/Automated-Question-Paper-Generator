@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Question Paper</title>
+    <link rel="stylesheet" href="static/generate.css">
+</head>
+<body>
+    <form method="POST" action="/generate_question_paper">
+        <h1>Generate Question Paper</h1>
+
+        <label for="branch">Branch:</label>
+        <input type="text" name="branch" required placeholder="Enter Branch"><br>
+
+        <label for="semester">Semester:</label>
+        <select name="semester" required>
+            <option value="" disabled selected>Select Semester</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select><br>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" required placeholder="Enter Subject"><br>
+
+        <label for="subject_code">Subject Code:</label>
+        <input type="text" name="subject_code" required placeholder="Enter Subject Code"><br>
+
+        <label for="paper_code">Question Paper Code:</label>
+        <input type="text" name="paper_code" required placeholder="Enter Paper Code"><br>
+
+        <label for="total_marks">Marks of Paper:</label>
+        <input type="number" name="total_marks" required placeholder="Enter Total Marks"><br>
+
+        <label for="exam_date">Date of Exam:</label>
+        <input type="date" name="exam_date" required><br>
+
+        <label for="exam_time">Time for Exam:</label>
+        <input type="text" name="exam_time" required placeholder="e.g., 02:30 PM to 05:00 PM"><br>
+
+        <label for="examination">Examination Name:</label>
+        <input type="text" name="examination" required placeholder="e.g., Winter Examination 2025"><br>
+
+        <button type="submit">Download Question Paper</button>
+    </form>
+</body>
+</html>
+{% endblock %}

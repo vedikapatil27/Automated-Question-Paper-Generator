@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Question</title>
+    <link rel="stylesheet" href="static/add_question.css">
+    <script>
+        let questions = []; // Store fetched questions
+        let searchTimeout; // Manage search delay
+
+        // Fetch user-specific questions on page load
+        document.addEventListener("DOMContentLoaded", async () => {
+            const response = await fetch("/fetch_questions");
+            questions = await response.json(); 
+        });
+
+        function handleTyping() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                let inputText = document.getElementById("questionInput").value;
+                searchQuestion(inputText);
+            }, 800); 
+        }
+    
+        function searchQuestion(inputText) {
+            const searchTerm = inputText.toLowerCase();
+            const matchedQuestions = questions.filter(q => q.toLowerCase().includes(searchTerm));
+        
+            const matchedQuestionElement = document.getElementById("matchedQuestion");
+            const matchedQuestionsInput = document.getElementById("matchedQuestionsInput"); // Hidden input
+    
+            if (matchedQuestions.length > 0) {
+                let listHTML = "<ul>";
+                matchedQuestions.forEach(question => {
+                    listHTML += `<li>${question}</li>`;
+                });
+                listHTML += "</ul>";
+                matchedQuestionElement.innerHTML = listHTML;
+    
+                // Store matched questions in hidden input field as JSON
+                matchedQuestionsInput.value = JSON.stringify(matchedQuestions);
+            } else {
+                matchedQuestionElement.innerHTML = "<p>No match found</p>";
+                matchedQuestionsInput.value = ""; // Clear input if no matches
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div></div> <!-- Empty div for alignment -->
+    <div class="nav-buttons">
+        
+        <form action="show_questions" method="get">
+            <button type="submit">Show Questions</button>
+        </form>
+        <form action="/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+    <!-- Left Side: Form -->
+    <div class="form-container">
+        <h1>Add Question</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="branch">Branch:</label>
+            <input type="text" name="branch" placeholder="Enter Branch Name" required>
+
+            <label for="semester">Semester:</label>
+            <select name="semester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="1">1</option> <option value="2">2</option>
+                <option value="3">3</option> <option value="4">4</option>
+                <option value="5">5</option> <option value="6">6</option>
+                <option value="7">7</option> <option value="8">8</option>
+            </select>
+
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" placeholder="Enter Subject Name" required>
+
+            <label for="question_text">Your Question:</label>
+            <textarea id="questionInput" name="question_text" rows="4" required oninput="handleTyping()"></textarea>
+
+            <label>Upload Image (Optional):</label>
+            <input type="file" name="question_image" accept="image/*">
+
+            <label for="marks">Marks:</label>
+            <input type="text" name="marks" placeholder="Enter Marks" required>
+
+            <label for="rbt_level">RBT Level:</label>
+            <input type="text" name="rbt_level" placeholder="Enter RBT Level" required>
+
+            <label for="co">CO:</label>
+            <input type="text" name="co" placeholder="Enter CO" required>
+
+            <label for="pi">PI:</label>
+            <input type="text" name="pi" placeholder="Enter PI" required>
+            
+            <input type="hidden" id="matchedQuestionsInput" name="matched_questions">
+
+            <button type="submit">Add Question</button>
+        </form>
+    </div>
+
+    <!-- Right Side: Matching Questions -->
+    <div class="question-panel">
+        <h2>Matched Questions</h2>
+        <div id="matchedQuestion">No match found</div>
+    </div>
+</main>
+
+</body>
+</html>
+
+{% endblock %}

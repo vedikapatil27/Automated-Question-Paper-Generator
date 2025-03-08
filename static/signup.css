@@ -1,0 +1,93 @@
+/* Full screen layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    background-image: url('images/bg4.jpg'); /* Ensure this path is correct */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    color: #fff;
+}
+
+/* Centered sign-up container */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sign-up box */
+.signup-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.signup-box a {
+    color: white;
+}
+.signup-box a:hover {
+    color: purple;
+}
+
+/* Input groups */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: block;
+    color: white;
+}
+
+.input-group input
+{
+    width: 95%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background: white;
+}
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background: white;
+}
+
+/* Sign-up button */
+.signup-btn {
+    background: #fff;
+    color: #2575fc;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.signup-btn:hover {
+    background: #2575fc;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}

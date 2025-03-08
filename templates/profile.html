@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="static/profile.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/add_question">Add Question</a>
+        <a href="/show_questions">Show Questions</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+    <main>
+        <div class="profile-container">
+            <h1>Welcome, {{ username }}!</h1>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Role:</strong> {{ role }}</p>
+
+            <h3>Manage your account</h3>
+            <!-- Add any profile management options here, like change password, update details, etc. -->
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

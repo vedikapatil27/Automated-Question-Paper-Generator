@@ -1,0 +1,71 @@
+/* Full screen layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('images/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    
+   
+}
+
+/* Centered container */
+.container {
+    text-align: center;
+    width: 50%;
+    max-width: 800px;
+    padding: 70px;
+    background: rgba(255, 255, 255, 0.2); /* Slightly more opaque for better readability */
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styling */
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+/* Get Started button */
+.get-started-btn {
+    background: #fff;
+    color: #2575fc;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.get-started-btn:hover {
+    background: #2575fc;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Login and Sign Up links */
+.auth-links {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.auth-links a {
+    color: blue;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: green;
+}

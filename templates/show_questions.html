@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='show_question.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div></div> <!-- Empty div for alignment -->
+        <div class="nav-buttons">
+            
+           
+            <form action="add_question" method="get">
+                <button type="submit">Go Back</button>
+            </form>
+        </div>
+    </nav>
+<h2>Your Questions</h2>
+
+{% if questions %}
+    <table border="1">
+        <tr>
+            <th>Question</th>
+            <th>Marks</th>
+            <th>RBT Level</th>
+            <th>CO</th>
+            <th>PI</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        {% for question in questions %}
+        <tr>
+            <td>{{ question[1] }}</td>  <!-- Question Text -->
+            <td>{{ question[2] }}</td>  <!-- Marks -->
+            <td>{{ question[3] }}</td>  <!-- RBT Level -->
+            <td>{{ question[4] }}</td>  <!-- CO -->
+            <td>{{ question[5] }}</td>  <!-- PI -->
+            <td>
+                {% if question[6] %}
+    <img src="{{ url_for('static', filename=question[6].lstrip('static/').replace('\\', '/')) }}" width="100">
+{% else %}
+    No Image
+{% endif %}
+
+
+            </td>
+            <td>
+                <!-- Edit button opens the modal -->
+                <label for="editModal{{ question[0] }}" class="open-modal">Edit</label>
+
+                <!-- Delete link -->
+                <a href="{{ url_for('delete_question', question_id=question[0]) }}" >Delete</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+    <!-- Modals for editing questions -->
+    {% for question in questions %}
+    <input type="checkbox" id="editModal{{ question[0] }}" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="editModal{{ question[0] }}" class="close">&times;</label>
+            <h3>Edit Question</h3>
+            <form method="POST" action="{{ url_for('update_question') }}" enctype="multipart/form-data">
+                <input type="hidden" name="question_id" value="{{ question[0] }}">
+
+                <label>Question:</label>
+                <input type="text" name="question" value="{{ question[1] }}" required><br><br>
+
+                <label>Marks:</label>
+                <input type="number" name="marks" value="{{ question[2] }}" required><br><br>
+
+                <label>RBT Level:</label>
+                <input type="text" name="rbt_level" value="{{ question[3] }}" required><br><br>
+
+                <label>CO:</label>
+                <input type="text" name="co" value="{{ question[4] }}" required><br><br>
+
+                <label>PI:</label>
+                <input type="text" name="pi" value="{{ question[5] }}" required><br><br>
+
+                <label>Image:</label>
+                <input type="file" name="image"><br><br>
+                {% if question[6] %}
+                    <img src="{{ url_for('static', filename='uploads/' + question[6]) }}" width="100"><br><br>
+                {% endif %}
+
+                <button type="submit">Update</button>
+                <label for="editModal{{ question[0] }}" class="cancel-button">Cancel</label>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+{% else %}
+    <p>No questions found.</p>
+{% endif %}
+
+</body>
+</html>
+{% endblock %}

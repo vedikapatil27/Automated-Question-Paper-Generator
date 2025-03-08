@@ -1,0 +1,137 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: url('images/bg4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: sans-serif; /* Matches login form */
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5f99f0;
+    padding: 10px 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-buttons button {
+    background-color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.nav-buttons button:hover {
+    background-color: #ffcc00;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+}
+
+/* Form Container */
+.form-container {
+    flex: 1;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+    min-width: 350px;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Label Styling */
+label {
+    font-size: 18px;  /* Same as "Add Question" text */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px; /* Added more space */
+}
+
+/* Input Styling */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px; /* Increased space */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    background: white;
+    border: 2px solid #3b82f6;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+}
+
+/* File Upload */
+input[type="file"] {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+}
+
+/* Matched Questions Panel */
+.question-panel {
+    flex: 1;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+}
