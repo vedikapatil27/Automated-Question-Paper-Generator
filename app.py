@@ -34,17 +34,17 @@ def allowed_file(filename):
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Use your SMTP server details
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_DEFAULT_SENDER'] = 'vedikapatil2713@gmail.com'
-app.config['MAIL_USERNAME'] = 'vedikapatil2713@gmail.com'  # Your email address
-app.config['MAIL_PASSWORD'] = 'iemz htjj jrxz thfc'  # Your email password
+app.config['MAIL_DEFAULT_SENDER'] = ''
+app.config['MAIL_USERNAME'] = ''  # Your email address
+app.config['MAIL_PASSWORD'] = ''  # Your email password
 mail = Mail(app)
 
 
 # Database configuration
 DB_CONFIG = {
     "host": "localhost",
-    "user": "root",
-    "password": "password@456",
+    "user": "",
+    "password": "",
     "database": "question_bank",
 }
 
